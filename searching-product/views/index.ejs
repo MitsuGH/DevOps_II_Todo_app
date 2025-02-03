@@ -13,14 +13,21 @@
             <button type="submit">Search</button>
         </form>
 
+        <a href="/add">Add New Product</a>
 
-        <% if (product.length > 0) { %>
+        <% if (product && product.length > 0) { %>
             <h2>Results:</h2>
             <ul>
                 <% product.forEach(item => { %>
                     <li>
                         <h2><%= item.name %> - <%= item.price %></h2>
                         <p><%= item.description %></p>
+                        <form action="/edit/<%= item.id %>" method="get" style="display:inline;">
+                            <button type="submit">Edit</button>
+                        </form>
+                        <form action="/delete/<%= item.id %>" method="post" style="display:inline;">
+                            <button type="submit">Delete</button>
+                        </form>
                     </li>
                 <% }); %>
             </ul>
